@@ -40,6 +40,6 @@ END {
 	if (type == "swap")
 		printf("%.1fG\n", (swap_total-swap_free)/1024/1024)
 	else
-		printf("%.1fG\n", 7.9-mem_free/1024/1024)
+		printf("%.1fG\n", 7.7-mem_free/1024/1024)
 }
 ' /proc/meminfo
