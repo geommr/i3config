@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ ${BLOCK_BUTTON} -eq 5 ]]; then
+  	i3-msg exit
+fi
+if [[ ${BLOCK_BUTTON} -eq 3 ]]; then
+  	i3lock
+fi
+
+echo ""

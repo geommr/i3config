@@ -1,11 +1,14 @@
-# todo: compton polybar window-placement brightness mouse-gest notif blur-bg
+# todo: sudo bt loading-cursr blur-bg polybar
 
 set $mod Mod1
-set $transparent #00000050
-set $grey #9B9B9B
-set $teal #00D2D4
+set $transparent #22222225
+set $grey #AFAFAF
+set $teal #04D6D8
+set $azure #E6D0D3
+set $orange #FF901F
 set $crimson #D6000C
 new_window 1pixel
+for_window [urgent=latest] focus
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -14,29 +17,38 @@ font pango:Clear Sans, FontAwesome 10.5
 ########## Autostart #####################################################################################
 exec_always --no-startup-id compton --config /home/major/.config/i3/compton.conf -b
 exec --no-startup-id nm-applet &
+exec --no-startup-id dunst &
 exec_always --no-startup-id kdeconnect-indicator &
 exec --no-startup-id redshift-gtk &
-exec --no-startup-id yakuake
-exec --no-startup-id albert
+exec --no-startup-id yakuake &
+exec --no-startup-id albert &
 exec --no-startup-id tlp
-exec --no-startup-id easystroke
+exec --no-startup-id conky -c ~/.conky/Gotham/Gotham &
+exec --no-startup-id easystroke &
+exec --no-startup-id clipit &
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id feh --bg-scale ~/Bilder/1jdhc70.jpg &
+exec_always --no-startup-id feh --bg-scale ~/Bilder/luke-chesser-50.jpg
+exec "setxkbmap -layout de,ar"
+exec "setxkbmap -option 'grp:alt_space_toggle'"
+exec xinput set-prop 11 278 1
 
 ########## Apps Keybindings ##############################################################################
-bindsym $mod+Shift+l exec i3lock
-bindsym $mod+Shift+g exec google-chrome-stable
-bindsym $mod+Shift+s exec spotify
-bindsym $mod+Shift+f exec nautilus
-bindsym $mod+Shift+x exec subl
-bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+d exec albert toggle
+bindsym $mod+Shift+l exec i3lock 
+bindsym $mod+Shift+g exec google-chrome-stable &
+bindsym $mod+Shift+s exec spotify &
+bindsym $mod+Shift+f exec nautilus &
+bindsym $mod+Shift+u exec solus-sc &
+bindsym $mod+Shift+x exec subl &
+bindsym $mod+Return exec i3-sensible-terminal &
+bindsym $mod+d exec albert toggle &
+bindsym Mod4+c exec gcolor3 &
+bindsym Mod4+s exec gnome-screenshot -i &
 
 ########## Backlight #####################################################################################
 # Note: If light doesn't work, install xbacklight and 1) uncomment the two lines below.
 # 2) Comment out the exec light lines.
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -inc 3 &
+bindsym XF86MonBrightnessDown exec xbacklight -dec 3 &
 #bindsym XF86MonBrightnessUp exec light -A 10 # Increase Brightness
 #bindsym XF86MonBrightnessDown exec light -U 5 # Decrease Brightness
 
@@ -67,10 +79,10 @@ floating_modifier $mod
 bindsym $mod+q kill
 
 # change focus
-bindsym Ctrl+Shift+Left focus left
+bindsym Mod4+Left focus left
+bindsym Mod4+Right focus right
 bindsym Ctrl+Shift+Down focus down
 bindsym Ctrl+Shift+Up focus up
-bindsym Ctrl+Shift+Right focus right
 
 # move window
 bindsym $mod+Shift+Left move left
@@ -96,34 +108,34 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym Mod4+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
 
 ########## Workspaces ####################################################################################
 # switch to workspace
 bindsym $mod+1 workspace 1:  
 bindsym $mod+2 workspace 2:  
 bindsym $mod+3 workspace 3:  
-bindsym $mod+4 workspace 4:  
-bindsym $mod+5 workspace 5:  
+bindsym $mod+4 workspace 4:  
+bindsym $mod+5 workspace 5:  
 bindsym $mod+6 workspace 6:  
 bindsym $mod+7 workspace 7:  
-bindsym $mod+8 workspace 8:  
+bindsym $mod+8 workspace 8:  
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1:  
 bindsym $mod+Shift+2 move container to workspace 2:  
 bindsym $mod+Shift+3 move container to workspace 3:  
-bindsym $mod+Shift+4 move container to workspace 4:  
-bindsym $mod+Shift+5 move container to workspace 5:  
+bindsym $mod+Shift+4 move container to workspace 4:  
+bindsym $mod+Shift+5 move container to workspace 5:  
 bindsym $mod+Shift+6 move container to workspace 6:  
 bindsym $mod+Shift+7 move container to workspace 7:  
-bindsym $mod+Shift+8 move container to workspace 8:  
+bindsym $mod+Shift+8 move container to workspace 8:  
 
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
@@ -136,10 +148,16 @@ for_window [title="Preferences$"] floating enable
 for_window [class="yakuake"] floating enable
 for_window [class="yakuake"] move absolute position 0 px 0 px
 for_window [class="solus-sc"] floating enable
+for_window [class="Gcolor3"] floating enable
 for_window [title="albert"] floating enable
+for_window [instance="crx_pofekaindcmmojfnfgbpklepkjfilcep"] sticky enable move absolute position 6 px 412 px resize set 600 350
 
-for_window [class="spotify"] assign 3
-assign [class="google-chrome"] 1
+assign [class="Google-chrome"] workspace 1:  
+assign [class="Sublime_text"] workspace 2:  
+for_window [class="Spotify"] assign workspace 3:  
+assign [class="Krita"] workspace 7:  
+assign [class="Gimp"] workspace 7:  
+assign [class="Solus-sc"] workspace 8:  
 
 ########## Session #######################################################################################
 ### reload the configuration file
@@ -179,16 +197,15 @@ bar {
         height 24
 
         colors {
-        	statusline #ffffff
+        	statusline #242424
             background $transparent
 
-            focused_workspace $transparent $transparent $teal
+            focused_workspace $transparent $transparent $azure
             active_workspace $transparent $transparent $grey
-            inactive_workspace $transparent $transparent $grey
+            inactive_workspace $transparent $transparent #242424
             urgent_workspace #D6000C50 #D6000C50 $crimson
         }
 }
-
 # toggle bar
 bindsym --release $mod+m bar mode toggle
 
@@ -202,5 +219,5 @@ client.background #404552
 ########## i3-gaps integration ###########################################################################
 smart_borders on
 smart_gaps on
-gaps inner 0
-gaps outer 6
+gaps inner 5
+gaps outer 0

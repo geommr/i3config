@@ -26,8 +26,8 @@ fi
 # Issue #36 compliant.
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
 then
-    echo "Disconnected"
-    echo "Disconnected"
+    echo ""
+    echo ""
     echo "#D6000C"
     exit 0
 fi
@@ -67,12 +67,12 @@ rx_rate=$(( $rx_diff / $time_diff ))
 tx_rate=$(( $tx_diff / $time_diff ))
 
 # incoming
-if [[ "$rx_rate" -gt 1000 ]]; then
-  echo '<span foreground="#00FF00"><b></b></span>'
-elif [[ "$rx_rate" -gt 100 ]]; then
-  echo '<span foreground="#FFD900"><b></b></span>'
+if [[ "$rx_rate" -gt 1500 ]]; then
+  echo '<span foreground="#37C74A"><b></b></span>'
+elif [[ "$rx_rate" -gt 200 ]]; then
+  echo '<span foreground="#FFD900"><b></b></span>'
 else
-  echo '<span foreground="#FF0000"><b></b></span>'
+  echo '<span foreground="#FF0000"><b></b></span>'
 fi
 
 # outgoing
