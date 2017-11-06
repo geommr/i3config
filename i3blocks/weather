@@ -44,6 +44,10 @@ elif [[ "${WEATHER_MAIN}" = *Fog* ]] || [[ "${WEATHER_MAIN}" = *Mist* ]]; then
   echo "${ICON_FOG} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${ICON_FOG} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo ""
+elif [[ "${WEATHER_MAIN}" = ** ]]; then
+  echo ""
+  echo ""
+  echo "#D6000C"
 else
   echo "${WEATHER_MAIN} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${WEATHER_MAIN} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
