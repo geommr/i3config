@@ -1,18 +1,34 @@
-# todo: sudo bt loading-cursr blur-bg polybar
+# todo: sudo bt loading-cursr blur-bg i3lock polybar
 
 set $mod Mod1
-set $transparent #22222225
-set $grey #AFAFAF
-set $teal #04D6D8
+set $sup Mod4
+set $ctl Control
+
+set $transparent #99999900
+set $grey #777777
+set $teal #044043
 set $azure #E6D0D3
 set $orange #FF901F
 set $crimson #D6000C
+set $green #1C411A
+
+set $ws1 workspace 1:    
+set $ws2 workspace 2:    
+set $ws3 workspace 3:    
+set $ws4 workspace 4:    
+set $ws5 workspace 5:    
+set $ws6 workspace 6:    
+set $ws7 workspace 7:    
+set $ws8 workspace 8:    
+set $ws9 workspace 9:    
+set $ws10 workspace 10:    
+
 new_window 1pixel
 for_window [urgent=latest] focus
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Clear Sans, FontAwesome 10.5
+font pango:Ubuntu, FontAwesome 10.5
 
 ########## Autostart #####################################################################################
 exec_always --no-startup-id compton --config /home/major/.config/i3/compton.conf -b
@@ -23,26 +39,27 @@ exec --no-startup-id redshift-gtk &
 exec --no-startup-id yakuake &
 exec --no-startup-id albert &
 exec --no-startup-id tlp
-exec --no-startup-id conky -c ~/.conky/Gotham/Gotham &
+#exec --no-startup-id conky -c ~/.conky/Gotham/Gotham &
 exec --no-startup-id easystroke &
 exec --no-startup-id clipit &
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always --no-startup-id feh --bg-scale ~/Bilder/luke-chesser-50.jpg
-exec "setxkbmap -layout de,ar"
-exec "setxkbmap -option 'grp:alt_space_toggle'"
+exec_always --no-startup-id feh --bg-scale ~/Bilder/1jdhc70.jpg
+exec setxkbmap -layout 'de,ar'
+exec setxkbmap -option 'grp:alt_space_toggle'
 exec xinput set-prop 11 278 1
 
 ########## Apps Keybindings ##############################################################################
-bindsym $mod+Shift+l exec i3lock 
-bindsym $mod+Shift+g exec google-chrome-stable &
-bindsym $mod+Shift+s exec spotify &
+bindsym $mod+Shift+l exec i3lock -i ~/Bilder/oscar-soderlund-s.png
+bindsym $mod+Shift+g $ws1; exec firefox &
+bindsym $mod+Shift+s $ws3; exec spotify &
 bindsym $mod+Shift+f exec nautilus &
-bindsym $mod+Shift+u exec solus-sc &
-bindsym $mod+Shift+x exec subl &
+bindsym $mod+Shift+u $ws8; exec solus-sc &
+bindsym $mod+Shift+x $ws2; exec subl &
 bindsym $mod+Return exec i3-sensible-terminal &
 bindsym $mod+d exec albert toggle &
-bindsym Mod4+c exec gcolor3 &
-bindsym Mod4+s exec gnome-screenshot -i &
+
+bindsym $sup+c exec gcolor3 &
+bindsym $sup+s exec gnome-screenshot -i &
 
 ########## Backlight #####################################################################################
 # Note: If light doesn't work, install xbacklight and 1) uncomment the two lines below.
@@ -54,12 +71,12 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 3 &
 
 ########## Media Player ##################################################################################
 bindsym XF86AudioPlay exec playerctl play-pause
-bindsym Ctrl+p exec playerctl play-pause
+bindsym $ctl+p exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioPrev exec playerctl previous
-bindsym Ctrl+Left exec playerctl previous
+bindsym $ctl+Left exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
-bindsym Ctrl+Right exec playerctl next
+bindsym $ctl+Right exec playerctl next
 
 ########## Other #############
 bindsym Print exec scrot -q 100
@@ -79,8 +96,8 @@ floating_modifier $mod
 bindsym $mod+q kill
 
 # change focus
-bindsym Mod4+Left focus left
-bindsym Mod4+Right focus right
+bindsym $sup+Left focus left
+bindsym $sup+Right focus right
 bindsym Ctrl+Shift+Down focus down
 bindsym Ctrl+Shift+Up focus up
 
@@ -105,10 +122,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $sup+Shift+Space floating toggle
 
 # change focus between tiling / floating windows
-bindsym Mod4+space focus mode_toggle
+bindsym $sup+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -118,27 +135,32 @@ bindsym $mod+c focus child
 
 ########## Workspaces ####################################################################################
 # switch to workspace
-bindsym $mod+1 workspace 1:  
-bindsym $mod+2 workspace 2:  
-bindsym $mod+3 workspace 3:  
-bindsym $mod+4 workspace 4:  
-bindsym $mod+5 workspace 5:  
-bindsym $mod+6 workspace 6:  
-bindsym $mod+7 workspace 7:  
-bindsym $mod+8 workspace 8:  
+bindsym $mod+1 $ws1
+bindsym $mod+2 $ws2
+bindsym $mod+3 $ws3
+bindsym $mod+4 $ws4
+bindsym $mod+5 $ws5
+bindsym $mod+6 $ws6
+bindsym $mod+7 $ws7
+bindsym $mod+8 $ws8
+bindsym $mod+9 $ws9
+bindsym $mod+0 $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1:  
-bindsym $mod+Shift+2 move container to workspace 2:  
-bindsym $mod+Shift+3 move container to workspace 3:  
-bindsym $mod+Shift+4 move container to workspace 4:  
-bindsym $mod+Shift+5 move container to workspace 5:  
-bindsym $mod+Shift+6 move container to workspace 6:  
-bindsym $mod+Shift+7 move container to workspace 7:  
-bindsym $mod+Shift+8 move container to workspace 8:  
+bindsym $mod+Shift+1 move container to $ws1
+bindsym $mod+Shift+2 move container to $ws2
+bindsym $mod+Shift+3 move container to $ws3
+bindsym $mod+Shift+4 move container to $ws4
+bindsym $mod+Shift+5 move container to $ws5
+bindsym $mod+Shift+6 move container to $ws6
+bindsym $mod+Shift+7 move container to $ws7
+bindsym $mod+Shift+8 move container to $ws8
+bindsym $mod+Shift+9 move container to $ws9
+bindsym $mod+Shift+0 move container to $ws10
 
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+r workspace back_and_forth
 
 ########## Classes handling ##############################################################################
 for_window [class="^.*"] border pixel 0
@@ -151,13 +173,23 @@ for_window [class="solus-sc"] floating enable
 for_window [class="Gcolor3"] floating enable
 for_window [title="albert"] floating enable
 for_window [instance="crx_pofekaindcmmojfnfgbpklepkjfilcep"] sticky enable move absolute position 6 px 412 px resize set 600 350
+for_window [instance="crx_eppojlglocelodeimnohnlnionkobfln"] assign $ws3
 
-assign [class="Google-chrome"] workspace 1:  
-assign [class="Sublime_text"] workspace 2:  
-for_window [class="Spotify"] assign workspace 3:  
-assign [class="Krita"] workspace 7:  
-assign [class="Gimp"] workspace 7:  
-assign [class="Solus-sc"] workspace 8:  
+assign [class="Google-chrome"] $ws1
+assign [class="firefox"] $ws1
+assign [class="Sublime_text"] $ws2
+assign [class="ghostwriter"] $ws2
+assign [class="com-cburch-logisim-Main"] $ws2
+for_window [title="Spotify"] assign $ws3
+assign [instance="masterpdfeditor4"] $ws5
+assign [class="okular"] $ws5
+assign [class="Thunderbird"] $ws6
+assign [class="krita"] $ws7
+assign [class="Pinta"] $ws7
+assign [class="Gimp"] $ws7
+assign [class="Solus-sc"] $ws8
+for_window [class="Libreoffice"] assign $ws9
+assign [class="Steam"] $ws10
 
 ########## Session #######################################################################################
 ### reload the configuration file
@@ -186,7 +218,7 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $sup+r mode "resize"
 
 ########## Bar ###########################################################################################
 bar {
@@ -197,12 +229,12 @@ bar {
         height 24
 
         colors {
-        	statusline #242424
+        	statusline $azure
             background $transparent
 
-            focused_workspace $transparent $transparent $azure
+            focused_workspace $transparent $transparent #ffffff
             active_workspace $transparent $transparent $grey
-            inactive_workspace $transparent $transparent #242424
+            inactive_workspace $transparent $transparent $grey
             urgent_workspace #D6000C50 #D6000C50 $crimson
         }
 }
@@ -219,5 +251,5 @@ client.background #404552
 ########## i3-gaps integration ###########################################################################
 smart_borders on
 smart_gaps on
-gaps inner 5
+gaps inner 6
 gaps outer 0

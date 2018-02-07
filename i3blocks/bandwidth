@@ -72,7 +72,7 @@ if [[ "$rx_rate" -gt 1500 ]]; then
 elif [[ "$rx_rate" -gt 200 ]]; then
   echo '<span foreground="#FFD900"><b></b></span>'
 else
-  echo '<span foreground="#FF0000"><b></b></span>'
+  echo '<span foreground="#D6000C"><b></b></span>'
 fi
 
 # outgoing

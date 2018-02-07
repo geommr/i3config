@@ -4,7 +4,7 @@ if [[ ${BLOCK_BUTTON} -eq 5 ]]; then
   	i3-msg exit
 fi
 if [[ ${BLOCK_BUTTON} -eq 3 ]]; then
-  	i3lock
+  	i3lock -i /home/major/Bilder/oscar-soderlund-s.png
 fi
 
 echo ""
