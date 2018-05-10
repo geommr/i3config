@@ -23,12 +23,23 @@ set $ws8 workspace 8:  
 set $ws9 workspace 9:    
 set $ws10 workspace 10:    
 
+#set $ws1 workspace 1:  I  
+#set $ws2 workspace 2:  II 
+#set $ws3 workspace 3:  III  
+#set $ws4 workspace 4:  IV  
+#set $ws5 workspace 5:  V  
+#set $ws6 workspace 6:  VI  
+#set $ws7 workspace 7:  VII  
+#set $ws8 workspace 8:  VIII  
+#set $ws9 workspace 9:  IX  
+#set $ws10 workspace 10:  X  
+
 new_window 1pixel
 for_window [urgent=latest] focus
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Ubuntu, FontAwesome 10.5
+font pango:Ubuntu, FontAwesome 11
 
 ########## Autostart #####################################################################################
 exec_always --no-startup-id compton --config /home/major/.config/i3/compton.conf -b
@@ -43,14 +54,15 @@ exec --no-startup-id tlp
 exec --no-startup-id easystroke &
 exec --no-startup-id clipit &
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always --no-startup-id feh --bg-scale ~/Bilder/1jdhc70.jpg
+exec_always --no-startup-id feh --bg-scale ~/Bilder/material/6m6qsolqbfm01.jpg
 exec setxkbmap -layout 'de,ar'
 exec setxkbmap -option 'grp:alt_space_toggle'
-exec xinput set-prop 11 278 1
+exec xinput set-prop 11 279 1
+exec sudo eopkg ur
 
 ########## Apps Keybindings ##############################################################################
 bindsym $mod+Shift+l exec i3lock -i ~/Bilder/oscar-soderlund-s.png
-bindsym $mod+Shift+g $ws1; exec firefox &
+bindsym $mod+Shift+g $ws1; exec google-chrome-stable &
 bindsym $mod+Shift+s $ws3; exec spotify &
 bindsym $mod+Shift+f exec nautilus &
 bindsym $mod+Shift+u $ws8; exec solus-sc &
@@ -97,7 +109,7 @@ bindsym $mod+q kill
 
 # change focus
 bindsym $sup+Left focus left
-bindsym $sup+Right focus right
+bindsym $sup+Tab focus right
 bindsym Ctrl+Shift+Down focus down
 bindsym Ctrl+Shift+Up focus up
 
@@ -173,6 +185,7 @@ for_window [class="solus-sc"] floating enable
 for_window [class="Gcolor3"] floating enable
 for_window [title="albert"] floating enable
 for_window [instance="crx_pofekaindcmmojfnfgbpklepkjfilcep"] sticky enable move absolute position 6 px 412 px resize set 600 350
+for_window [instance="crx_eppojlglocelodeimnohnlnionkobfln"] sticky enable move absolute position 6 px 412 px resize set 600 350
 for_window [instance="crx_eppojlglocelodeimnohnlnionkobfln"] assign $ws3
 
 assign [class="Google-chrome"] $ws1
@@ -226,13 +239,13 @@ bar {
         i3bar_command i3bar -t
         strip_workspace_numbers yes
         position top
-        height 24
+        height 28
 
         colors {
-        	statusline $azure
+        	statusline #eeeeee
             background $transparent
 
-            focused_workspace $transparent $transparent #ffffff
+            focused_workspace $transparent $transparent #FFD54F
             active_workspace $transparent $transparent $grey
             inactive_workspace $transparent $transparent $grey
             urgent_workspace #D6000C50 #D6000C50 $crimson
@@ -242,14 +255,15 @@ bar {
 bindsym --release $mod+m bar mode toggle
 
 ########## Styling #######################################################################################
-client.focused #404552 #404552 #fafafa #ff5757 #666666
-client.focused_inactive #666666 #404552 #eeeeee #5294e2 #666666
-client.unfocused #404552 #484b52 #eeeeee #ff5757 #404552
-client.urgent #ff5757 #404552 #ffffff #555757 #404552
-client.background #404552
+# Classes                  Border  BG      Text    Indicator Child-border
+client.focused             #dddddd #dddddd #333333 #ff5757   #666666
+client.focused_inactive    #666666 #404552 #999999 #5294e2   #666666
+client.unfocused           $grey   $grey   #aaaaaa #ff5757   #404552
+client.urgent              #ff5757 #404552 #ffffff #555757   #404552
+client.background          #404552
 
 ########## i3-gaps integration ###########################################################################
 smart_borders on
 smart_gaps on
-gaps inner 6
-gaps outer 0
+gaps inner 4
+gaps outer 2

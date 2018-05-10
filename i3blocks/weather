@@ -6,8 +6,8 @@ API_KEY="1f36356ba3bb0b8d64add3163aebe489"
 # Check on http://openweathermap.org/find
 CITY_ID="${BLOCK_INSTANCE}"
 
-URGENT_LOWER=0
-URGENT_HIGHER=30
+URGENT_LOWER=-3
+URGENT_HIGHER=25
 
 ICON_SUNNY=""
 ICON_CLOUDY=""
@@ -27,23 +27,33 @@ WEATHER_TEMP=$(echo "${WEATHER_INFO}" | grep -o -e '\"temp\":\-\?[0-9]*' | awk -
 if [[ "${WEATHER_MAIN}" = *Snow* ]]; then
   echo "${ICON_SNOW} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${ICON_SNOW} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo ""
+  if [[ "${WEATHER_TEMP}" -lt "${URGENT_LOWER}" ]] || [[ "${WEATHER_TEMP}" -gt "${URGENT_HIGHER}" ]]; then
+    echo "#D6000C"
+  fi
 elif [[ "${WEATHER_MAIN}" = *Rain* ]] || [[ "${WEATHER_MAIN}" = *Drizzle* ]]; then
   echo "${ICON_RAINY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${ICON_RAINY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo ""
+  if [[ "${WEATHER_TEMP}" -lt "${URGENT_LOWER}" ]] || [[ "${WEATHER_TEMP}" -gt "${URGENT_HIGHER}" ]]; then
+    echo "#D6000C"
+  fi
 elif [[ "${WEATHER_MAIN}" = *Cloud* ]]; then
   echo "${ICON_CLOUDY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${ICON_CLOUDY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo ""
+  if [[ "${WEATHER_TEMP}" -lt "${URGENT_LOWER}" ]] || [[ "${WEATHER_TEMP}" -gt "${URGENT_HIGHER}" ]]; then
+    echo "#D6000C"
+  fi
 elif [[ "${WEATHER_MAIN}" = *Clear* ]]; then
   echo "${ICON_SUNNY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${ICON_SUNNY} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo ""
+  if [[ "${WEATHER_TEMP}" -lt "${URGENT_LOWER}" ]] || [[ "${WEATHER_TEMP}" -gt "${URGENT_HIGHER}" ]]; then
+    echo "#D6000C"
+  fi
 elif [[ "${WEATHER_MAIN}" = *Fog* ]] || [[ "${WEATHER_MAIN}" = *Mist* ]]; then
   echo "${ICON_FOG} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${ICON_FOG} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo ""
+  if [[ "${WEATHER_TEMP}" -lt "${URGENT_LOWER}" ]] || [[ "${WEATHER_TEMP}" -gt "${URGENT_HIGHER}" ]]; then
+    echo "#D6000C"
+  fi
 elif [[ "${WEATHER_MAIN}" = ** ]]; then
   echo ""
   echo ""
@@ -51,9 +61,7 @@ elif [[ "${WEATHER_MAIN}" = ** ]]; then
 else
   echo "${WEATHER_MAIN} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
   echo "${WEATHER_MAIN} ${WEATHER_TEMP}${SYMBOL_CELSIUS}"
-  echo ""
-fi
-
-if [[ "${WEATHER_TEMP}" -lt "${URGENT_LOWER}" ]] || [[ "${WEATHER_TEMP}" -gt "${URGENT_HIGHER}" ]]; then
-  exit 33
+  if [[ "${WEATHER_TEMP}" -lt "${URGENT_LOWER}" ]] || [[ "${WEATHER_TEMP}" -gt "${URGENT_HIGHER}" ]]; then
+    echo "#D6000C"
+  fi
 fi

@@ -55,7 +55,7 @@ if ($status eq 'Discharging') {
 	if ($percent < 15) {
 		print "#D6000C\n";
 	} elsif ($percent < 40) {
-		print "#FFAE00\n";
+		print "#FFD54F\n";
 	}
 
 	if ($percent < 5) {

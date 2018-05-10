@@ -79,7 +79,7 @@ fi
 if [[ "$tx_rate" -gt 100 ]]; then
   echo '<span foreground="#00FF00"><b></b></span>'
 elif [[ "$rx_rate" -gt 0 ]]; then
-  echo '<span foreground="#FFD900"><b></b></span>'
+  echo '<span foreground="#FFD54F"><b></b></span>'
 else
   echo '<span foreground="#FF0000"><b></b></span>'
 fi
