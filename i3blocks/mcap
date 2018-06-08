@@ -1,3 +1,0 @@
-#!/bin/bash
-
-curl -s 'https://api.coinmarketcap.com/v1/global/?convert=EUR' | jq -r '.total_market_cap_eur' | cut -c1-3 | echo "$(cat -)B"

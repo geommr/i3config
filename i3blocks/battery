@@ -37,29 +37,40 @@ if ($acpi !~ /: (\w+), (\d+)%/) {
 
 $status = $1;
 $percent = $2;
-$full_text = "$percent%";
+$short_text = "$percent%";
 
-$short_text = $full_text;
+if ($status eq 'Charging') {
+	$short_text = " $short_text";
+}
 
 if ($acpi =~ /(\d\d:\d\d):/) {
 	$full_text .= " ($1)";
 }
 
 # print text
-print "$full_text\n";
-print "$short_text\n";
+if ($percent < 7) {
+	$short_text = " $short_text";
+} elsif ($percent < 25) {
+	$short_text = " $short_text";
+} elsif ($percent < 55) {
+	$short_text = " $short_text";
+} elsif ($percent < 80) {
+	$short_text = " $short_text";
+} else {
+	$short_text = " $short_text";
+}
+
+print "$short_text\n\n";
 
 # consider color and urgent flag only on discharge
 if ($status eq 'Discharging') {
 
-	if ($percent < 15) {
+	if ($percent < 7) {
 		print "#D6000C\n";
-	} elsif ($percent < 40) {
+	} elsif ($percent < 55) {
 		print "#FFD54F\n";
-	}
-
-	if ($percent < 5) {
-		exit(33);
+	} else {
+		print "#FFFFFF\n";
 	}
 }
 

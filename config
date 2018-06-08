@@ -54,7 +54,7 @@ exec --no-startup-id tlp
 exec --no-startup-id easystroke &
 exec --no-startup-id clipit &
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always --no-startup-id feh --bg-scale ~/Bilder/material/6m6qsolqbfm01.jpg
+exec_always --no-startup-id feh --bg-scale ~/Bilder/Dda-HHzVAAAuv54-b.png
 exec setxkbmap -layout 'de,ar'
 exec setxkbmap -option 'grp:alt_space_toggle'
 exec xinput set-prop 11 279 1
